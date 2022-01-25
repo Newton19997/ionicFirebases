@@ -1,0 +1,66 @@
+
+<ion-header  [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="logo">
+      <img alt="logo" id="header_logo" height="40" float-left src="../../../../assets/icon/favicon.png">Blood Bank
+  </ion-title>
+    <!-- <ion-buttons slot="primary">
+      <ion-button *ngIf="login != null" (click)="this.api.Resetpassword()" routerLink="/login">U-out</ion-button>  
+      <ion-button *ngIf="login == null" (click)="this.api.Resetpassword()" routerLink="/login">L-In</ion-button>   
+    </ion-buttons> -->
+  </ion-toolbar>
+  </ion-header> 
+  
+  
+  <ion-content>
+    <form #userForm="ngForm">
+  
+      <!-- {{userForm.value | json}} -->
+      <div class="card">
+        <div class="card-header">
+          <ion-buttons slot="start">
+            <ion-button routerLink="/profile" ><ion-icon name="arrow-back"></ion-icon></ion-button>DashBoard
+          </ion-buttons>        
+        </div>
+       
+        <div class="card-body">  
+     
+              <input type="text" name ='fname' class="form-control form-control-sm" required #fname="ngModel"
+              [class.is-invalid]="fname.invalid && fname.touched" id="fname" placeholder="Please First Name" [(ngModel)]=prod.fname>
+              <small class="text-danger" [class.d-none]="fname.valid || fname.untouched">First Name is required !</small><br/>          
+              
+              <input type="text" name ='address' class="form-control form-control-sm" required #address="ngModel"
+              [class.is-invalid]="address.invalid && address.touched" id="address" placeholder="Please User address" [(ngModel)]=prod.address>
+              <small class="text-danger" [class.d-none]="address.valid || address.untouched">User address is required !</small><br/>
+            
+            <input type="text" name ='lname' class="form-control form-control-sm" required #lname="ngModel"
+            [class.is-invalid]="lname.invalid && lname.touched" id="lname" placeholder="Please Blood Group Name" [(ngModel)]=prod.blood>
+            <small class="text-danger" [class.d-none]="lname.valid || lname.untouched">Blood Group Name !</small><br/>
+            <!-- <textarea placeholder="Adress" row="4" cols="40"></textarea> -->           
+      
+          <input type="text" name ='city' class="form-control form-control-sm" required #city="ngModel"
+          [class.is-invalid]="city.invalid && city.touched" id="city" placeholder="User city need" [(ngModel)]=prod.city>
+          <small class="text-danger" [class.d-none]="city.valid || city.untouched">User city is required !</small><br/>       
+    
+          
+           <button  [disabled]="userForm.form.invalid"  type="submit" (click)="edit()" class="btn btn-primary">edit</button>  	&nbsp;  &nbsp;  
+           <button  [disabled]="userForm.form.invalid"  type="submit" (click)="delete()" class="btn btn-primary">delete</button>           
+         
+        </div>
+        </div>
+       
+      </form>
+  </ion-content>
+  <ion-footer >
+    <ion-toolbar class="foterhight" color="warning">
+      <ion-title>
+        Do Shopping joyfully....
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer>
+  
+  
+

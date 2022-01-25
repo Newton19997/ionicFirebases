@@ -1,0 +1,125 @@
+
+<ion-header  [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="logo">
+      <img alt="logo" id="header_logo" height="40" float-left src="../../../../assets/icon/favicon.png">Blood Bank
+  </ion-title>
+    <!-- <ion-buttons slot="primary">
+      <ion-button *ngIf="login != null" (click)="this.api.Resetpassword()" routerLink="/login">U-out</ion-button>  
+      <ion-button *ngIf="login == null" (click)="this.api.Resetpassword()" routerLink="/login">L-In</ion-button>   
+    </ion-buttons> -->
+  </ion-toolbar>
+  </ion-header> 
+  
+  
+  <ion-content>
+    <form #userForm="ngForm">
+  
+      <!-- {{userForm.value | json}} -->
+      <div class="card">
+        <div class="card-header">
+          <ion-buttons slot="start">
+            <ion-button routerLink="/home" ><ion-icon name="arrow-back"></ion-icon></ion-button>DashBoard
+          </ion-buttons>        
+        </div>
+       
+        <div class="card-body">
+  
+     
+            <input type="text" name ='fname' class="form-control form-control-sm" required #fname="ngModel"
+              [class.is-invalid]="fname.invalid && fname.touched" id="fname" placeholder="Please First Name" [(ngModel)]=prod.fname>
+              <small class="text-danger" [class.d-none]="fname.valid || fname.untouched">First Name is required !</small><br/>          
+              
+              <input type="text" name ='address' class="form-control form-control-sm" required #address="ngModel"
+              [class.is-invalid]="address.invalid && address.touched" id="address" placeholder="Please User address" [(ngModel)]=prod.address>
+              <small class="text-danger" [class.d-none]="address.valid || address.untouched">User address is required !</small><br/>
+            
+            <input type="text" name ='lname' class="form-control form-control-sm" required #lname="ngModel"
+            [class.is-invalid]="lname.invalid && lname.touched" id="lname" placeholder="Please Blood Group Name" [(ngModel)]=prod.blood>
+            <small class="text-danger" [class.d-none]="lname.valid || lname.untouched">Blood Group Name !</small><br/>
+            <!-- <textarea placeholder="Adress" row="4" cols="40"></textarea> -->
+           
+      
+          <input type="text" name ='city' class="form-control form-control-sm" required #city="ngModel"
+          [class.is-invalid]="city.invalid && city.touched" id="city" placeholder="User city need" [(ngModel)]=prod.city>
+          <small class="text-danger" [class.d-none]="city.valid || city.untouched">User city is required !</small><br/>
+  
+     
+  
+  
+  
+     
+    
+          <button *ngIf="collapse" [disabled]="userForm.form.invalid"  type="submit" (click)="Save()" class="btn btn-primary">Submit</button>	&nbsp;	&nbsp;  
+          <button  type="submit" (click)="load()" class="btn btn-primary">load Data</button>	&nbsp;  &nbsp;  
+           <!--<button *ngIf="collapse" [disabled]="userForm.form.invalid"  type="submit" (click)="delete()" class="btn btn-primary">delete</button>   -->
+
+          <ion-grid> 
+            <ion-row>
+              <ion-col sizeLg="4" sizeMd="4" sizeXs="4" >
+                <input type="text" class="form-control form-control-sm"   placeholder="City Name" name="City" [(ngModel)]="searchcom" (keyup)="SearchSamplecatagory($event.target.value)">  
+        
+              </ion-col>
+               
+              <ion-col sizeLg="5" sizeMd="5" sizeXs="5" >
+                <input type="text" class="form-control form-control-sm"   placeholder="Mobile" name="Mobile" [(ngModel)]="Mobileno" (keyup)="SearchSamplecatagorymobile($event.target.value)">  
+        
+              </ion-col>  
+              <ion-col sizeLg="3" sizeMd="3" sizeXs="3" >
+                <input type="text" class="form-control form-control-sm"   placeholder="Blood" name="Blood" [(ngModel)]="Bloodgroup" (keyup)="SearchSamplecatagoryblood($event.target.value)" >  
+                <!-- (ngModelChange)="SearchCompany()" -->
+              </ion-col>              
+            
+            </ion-row>
+          </ion-grid>
+          
+          
+          <div id="no-more-tables">
+            <!-- <table class="table table-success table-striped"> -->
+              <table class="col-md-12 table-bordered table-striped table-condensed cf fonts">
+              <thead>
+              <tr >           
+                <th>S.No</th>
+                <th>Action</th>
+                <th>Name</th>  
+                <th>Mobile</th>  
+                <th>Blood</th>           
+                <th>City</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let com of items | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ; let i = index">
+                  <td>{{i+1+(page-1) * pageSize}} </td>
+               <!-- <td> <ion-icon (click)="editnext(com.id)"  name="trash-outline"></ion-icon>||<ion-icon name="create-outline" fill="outline" [routerLink]="['/profile/',com.id]" routerDirection="forward" ></ion-icon> </td> -->
+              <td> <ion-icon (click)="editnext(com,i)"  name="trash-outline"></ion-icon>||<ion-icon name="create-outline" fill="outline"(click)="editnext(com,i)" routerDirection="forward" ></ion-icon>
+                <!-- {{com.companyid }} -->
+              </td>
+               <td>{{com.fname }}</td>
+               <td>{{com.mobile }}</td>
+               <td>{{com.blood }}</td>
+               <td>{{com.city }}</td>
+
+                </tr>
+              </tbody>
+              </table>
+              <ngb-pagination [collectionSize]="items.length" [(page)]="page"  [pageSize]="pageSize" [maxSize]="50" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination> 
+     
+            </div>
+         
+        </div>
+        </div>
+       
+      </form>
+  </ion-content>
+  <ion-footer >
+    <ion-toolbar class="foterhight" color="warning">
+      <ion-title>
+        Do Shopping joyfully....
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer>
+  
+  

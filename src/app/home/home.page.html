@@ -1,20 +1,56 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+
+<ion-header  [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="logo">
+      <img alt="logo" id="header_logo" height="40" float-left src="../../../../assets/icon/favicon.png">Blood Bank
+  </ion-title>   
+  </ion-toolbar>
+  </ion-header> 
+
+  <ion-content>
+    <form #userForm="ngForm">
+      <div class="card">
+        <div class="card-header">
+          <ion-buttons slot="start">
+            <!-- <h4>admin Login</h4> -->
+             <ion-button><ion-icon name="arrow-back"></ion-icon></ion-button>Login
+             <!-- routerLink="/admin" -->
+             
+          </ion-buttons>
+          
+        </div>
+        <div class="card-body">
+        <br/>
+        <br/>
+
+    <input type="text" name ='User' class="form-control form-control-sm" required #User="ngModel"
+      [class.is-invalid]="User.invalid && User.touched" id="Item" placeholder="Enter User email" [(ngModel)]=prod.email>
+      <small class="text-danger" [class.d-none]="User.valid || User.untouched">User email is required !</small><br/>
+    
+
+    <input type="password" name ='password' class="form-control form-control-sm" required #password="ngModel"
+    [class.is-invalid]="password.invalid && password.touched" id="password" placeholder="Enter User password" [(ngModel)]=prod.password>
+    <small class="text-danger" [class.d-none]="password.valid || password.untouched">User password is required !</small><br/>
+   
+    <div class="col text-center">
+    <span class="text-center"><button type="submit" [disabled]="userForm.form.invalid" (click)="ChackLogin()"  class="btn btn-primary btn-sm">Login</button></span> 
+    <p class="text-center">Need an account? <a routerLink="/register" fill="outline" size="small" routerDirection="forward">Registration</a> </p>
+    <!-- <p class="text-center">Have you forgot password? <button type="submit" (click)="OpenModal()" class="btn btn-primary btn-sm">Forgot</button></p> -->
+    </div>
+
+  </div>
+</div>
+
+</form>
+</ion-content>
+
+<ion-footer >
+  <ion-toolbar class="foterhight" color="warning">
     <ion-title>
-      Blank
+      Do Login joyfully....
     </ion-title>
   </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+</ion-footer>
